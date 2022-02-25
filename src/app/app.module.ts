@@ -16,6 +16,7 @@ import { NzMenuModule } from 'ng-zorro-antd/menu';
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import { AutomaticComponent } from './automatic/automatic.component';
+import {NzDividerModule} from "ng-zorro-antd/divider";
 
 registerLocaleData(zh);
 
@@ -34,7 +35,8 @@ registerLocaleData(zh);
     NzLayoutModule,
     NzMenuModule,
     NzButtonModule,
-    NzDropDownModule
+    NzDropDownModule,
+    NzDividerModule
   ],
   providers: [{ provide: NZ_I18N, useValue: zh_CN }],
   bootstrap: [AppComponent]
