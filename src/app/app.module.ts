@@ -17,13 +17,15 @@ import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDropDownModule} from "ng-zorro-antd/dropdown";
 import { AutomaticComponent } from './automatic/automatic.component';
 import {NzDividerModule} from "ng-zorro-antd/divider";
+import { AdaptiveComponent } from './adaptive/adaptive.component';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutomaticComponent
+    AutomaticComponent,
+    AdaptiveComponent
   ],
   imports: [
     BrowserModule,

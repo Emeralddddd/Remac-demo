@@ -24,7 +24,7 @@ export class AutomaticComponent implements OnInit {
     }
     for (let i = 0; i < this.splits.length; i++) {
       const split = this.splits[i];
-      this.drawCurlyBrackets(ctx,50*(split[0]+1)-10,50*(split[1]+1)+10,70,50);
+      AutomaticComponent.drawCurlyBrackets(ctx,50*(split[0]+1)-10,50*(split[1]+1)+10,70,50);
       ctx.fillText('block'+(i+1).toString(),25*(split[0]+split[1]+1)+5,40)
     }
   }
@@ -56,6 +56,22 @@ export class AutomaticComponent implements OnInit {
     Chart.setOption(option);
   }
 
+  readBlocks():void{
+    this.variables=[];
+    this.operators=[];
+    this.splits=[];
+    for (let i = 0; i < this.test_blocks.length; i++) {
+      const b = this.test_blocks[i];
+      const ops = b.name.replace(/({|\s})/g,'').split(' ');
+      ops.forEach(x=>{
+        x = x.replace(/t\((\S)\)/,'$1ᵀ')
+        this.variables.push(x);
+        this.operators.push('∙')
+      });
+      this.splits.push([b.range.left,b.range.right]);
+    }
+  }
+
 
   private static drawLine(ctx:any, x: number, y: number, dx: number, dy: number) {
     ctx.beginPath();
@@ -64,7 +80,7 @@ export class AutomaticComponent implements OnInit {
     ctx.stroke();
   }
 
-  private drawCurlyBrackets(ctx:any,x1:number,x2:number,y:number,endy:number){
+  private static drawCurlyBrackets(ctx:any,x1:number,x2:number,y:number,endy:number){
     ctx.beginPath();
     ctx.moveTo(x1,y);
     ctx.bezierCurveTo(x1,endy,(x1+x2)/2,y,(x1+x2)/2,endy);
@@ -87,9 +103,53 @@ export class AutomaticComponent implements OnInit {
   splits = [[0,0],[1,10],[11,13]]
   cse = [{key:'AH',value:['{1,2}','{3,4}','{7,8}']},{key:'AᵀA',value:['{2,3}','{8,9}','{13,14}','{16,17}']}]
   lse = [{key:'AᵀA',value:['{2,3}','{8,9}','{13,14}','{16,17}']}]
+
+  test_blocks= [
+      {
+        "range": {
+          "left": 0,
+          "right": 0,
+          "transpose": false
+        },
+        "name": "{h }"
+      },
+      {
+        "range": {
+          "left": 1,
+          "right": 10,
+          "transpose": false
+        },
+        "name": "{h t(a) a h g t(g) t(h) t(a) a h }"
+      },
+      {
+        "range": {
+          "left": 11,
+          "right": 19,
+          "transpose": false
+        },
+        "name": "{t(g) t(h) t(a) a h t(a) a h g }"
+      },
+      {
+        "range": {
+          "left": 20,
+          "right": 23,
+          "transpose": false
+        },
+        "name": "{h g t(g) t(h) }"
+      },
+      {
+        "range": {
+          "left": 24,
+          "right": 29,
+          "transpose": false
+        },
+        "name": "{t(g) t(h) t(a) a h g }"
+      }
+    ]
   constructor() { }
 
   ngOnInit(): void {
+    this.readBlocks();
     this.draw();
     this.drawComparison();
   }

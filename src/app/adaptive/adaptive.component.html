@@ -1,0 +1,51 @@
+<nz-layout>
+  <nz-header>
+    <div class="app-header" style="display: flex;">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed" style="display: flex;align-items: center">
+            <i class="trigger"
+               nz-icon
+               [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+            ></i>
+        </span>
+      <span style="flex-grow: 1">
+          Algorithm:
+          <button nz-button nz-dropdown [nzDropdownMenu]="algorithm">
+            {{this.curAlgorithm}}
+            <i nz-icon nzType="down"></i>
+          </button>
+          <nz-dropdown-menu #algorithm="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="chooseAlgorithm('DFP')">DFP</li>
+              <li nz-menu-item (click)="chooseAlgorithm('BFGS')">BFGS</li>
+              <li nz-menu-item (click)="chooseAlgorithm('GD')">GD</li>
+            </ul>
+          </nz-dropdown-menu>
+        </span>
+      <span style="flex-grow: 1">
+          Method:
+          <button nz-button nz-dropdown [nzDropdownMenu]="method">
+            {{this.curMethod}}
+            <i nz-icon nzType="down"></i>
+          </button>
+          <nz-dropdown-menu #method="nzDropdownMenu">
+            <ul nz-menu>
+              <li nz-menu-item (click)="chooseMethod('Dynamic Programming')">Dynamic Programming</li>
+              <li nz-menu-item (click)="chooseMethod('Enumeration')">Enumeration</li>
+            </ul>
+          </nz-dropdown-menu>
+        </span>
+      <span style="flex-grow: 1">
+            <button nz-button>
+            Run
+          </button>
+      </span>
+    </div>
+  </nz-header>
+  <nz-content>
+    <div class="inner-content">
+      <div id="costGraph" style="width: 100%;height: 600px">
+      </div>
+    </div>
+  </nz-content>
+</nz-layout>
+
