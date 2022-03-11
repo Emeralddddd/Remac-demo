@@ -54,7 +54,7 @@
           <div style="display: flex;flex-direction: row">
             <div style="margin-right: 20px">
               <p><b >key</b></p>
-              <table border="2" style="margin-right: 20px">
+              <table border="2" style="margin-right: 20px;">
                 <tr *ngFor="let item of this.cse">
                   <td><b>{{item.key}}</b></td>
                 </tr>
@@ -62,7 +62,7 @@
             </div>
             <div>
               <p>value</p>
-              <table border="1">
+              <table border="1" style="border:none">
                 <tr *ngFor="let item of this.cse">
                   <td *ngFor="let v of item.value">{{v}}</td>
                 </tr>
@@ -70,7 +70,7 @@
             </div>
           </div>
           <br>
-          <p>Found xxx CSE options</p>
+          <p>Found {{this.cse.length}} CSE options</p>
         </div>
         <div style="flex-grow: 1">
           <p>Search for LSE:</p>
@@ -86,7 +86,7 @@
             </div>
             <div>
               <p>value</p>
-              <table border="1">
+              <table border="1" style="border:none">
                 <tr *ngFor="let item of this.lse">
                   <td *ngFor="let v of item.value">{{v}}</td>
                 </tr>
@@ -95,7 +95,7 @@
 
           </div>
           <br>
-          <p>Found xxx LSE options</p>
+          <p>Found {{this.lse.length}} LSE options</p>
         </div>
       </div>
       <nz-divider></nz-divider>
